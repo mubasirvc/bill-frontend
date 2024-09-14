@@ -31,7 +31,7 @@ console.log(location.pathname)
             sx={{ flexGrow: 1, fontFamily: "Poppins" }}
             href="/"
           >
-            Mammus
+            Fathis
           </Link>
           {location.pathname !== '/' && <Box
             sx={{ flexGrow: 1, display: "flex", gap: 4, fontFamily: "Poppins" }}
