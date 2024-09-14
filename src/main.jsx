@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Toaster } from "sonner";
 
 const theme = createTheme({
   typography: {
@@ -17,10 +19,15 @@ const theme = createTheme({
   },
 });
 
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+        <Toaster richColors/>
+      </QueryClientProvider>
     </ThemeProvider>
   </React.StrictMode>
 );

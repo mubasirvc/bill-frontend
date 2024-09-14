@@ -1,14 +1,31 @@
 import React from "react";
 import Form from "../components/Form";
 import Table from "../components/Table";
-import Modal from '../components/Modal'
 
 const Items = () => {
+  const [selectedDate, setSelectedDate] = React.useState(null);
+  const [selectedRow, setSelectedRows] = React.useState([]);
+  const [formData, setFormData] = React.useState({
+    technicianName: "Mohammed",
+    mobile: "9995096719",
+    clientName: "",
+    place: "",
+  });
+
   return (
     <div>
-      <Modal name='Add Item' />
-      <Form />
-      <Table />
+      <Form
+        formData={formData}
+        setFormData={setFormData}
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+      />
+      <Table
+        setSelectedRows={setSelectedRows}
+        selectedRow={selectedRow}
+        datas={selectedRow}
+        details={{ ...formData, selectedDate }}
+      />
     </div>
   );
 };

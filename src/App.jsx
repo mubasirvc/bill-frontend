@@ -4,6 +4,7 @@ import Home from "./pages/home";
 import Items from "./pages/Items";
 import Category from "./pages/Category";
 import Navbar from "./components/Navbar";
+import GenerateBill from "./components/GenerateBill";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} /> 
           <Route path="/items" element={<Items />} /> 
           <Route path="/category" element={<Category />} />
+          <Route path="/pdf" element={<GenerateBill />} />
         </Routes>
       </Box>
     </Router>

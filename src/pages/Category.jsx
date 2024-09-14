@@ -1,94 +1,67 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-import Modal from '../components/Modal'
-import Alert from '../components/Alert'
+import Modal from "../components/Modal";
+import { useQuery } from "react-query";
+import service from "../services/apiService";
+import { Box } from "@mui/material";
 
-const initialRows = [
+const fetchCategory = async () => {
+  const res = await service.get("/category");
+
+  return res.data.categories.map((item, index) => ({
+    id: index + 1,
+    name: item.name,
+  }));
+};
+
+const columns = [
   {
-    id: 1,
-    Number: 1,
-    "Item name": "Item 1",
-    Category: "Category 1",
+    field: "id",
+    headerName: "No",
+    width: 70,
+    headerAlign: "center",
+    align: "center",
   },
   {
-    id: 2,
-    Number: 2,
-    "Item name": "Item 2",
-    Category: "Category 2",
-  },
-  {
-    id: 3,
-    Number: 3,
-    "Item name": "Item 3",
-    Category: "Category 3",
-  },
-  {
-    id: 4,
-    Number: 4,
-    "Item name": "Item 4",
-  },
-  {
-    id: 5,
-    Number: 5,
-    "Item name": "Item 5",
-    Category: "Category 5",
+    field: "name",
+    headerName: "Category name",
+    width: 350,
+    headerAlign: "center",
+    align: "center",
   },
 ];
 
 const Category = () => {
-  const [rows, setRows] = React.useState(initialRows);
-
-  const handleDelete = (id) => {
-    // Remove the row with the matching id
-    setRows((prevRows) => prevRows.filter((row) => row.id !== id));
-  };
-
   const handleProcessRowUpdate = React.useCallback((newRow) => {
-    // Handle row update here, e.g., update state or call API
     console.log("Row updated:", newRow);
     return newRow;
   }, []);
 
-  const columns = [
-    {
-      field: "Number",
-      headerName: "No",
-      width: 70,
-      headerAlign: "center",
-      align: "center",
-    },
-    {
-      field: "Category",
-      headerName: "Category name",
-      width: 350,
-      headerAlign: "center",
-      align: "center",
-    },
-    {
-      field: "delete",
-      headerName: "Action",
-      width: 100,
-      headerAlign: "center",
-      align: "center",
-      renderCell: (params) => (
-        <Alert />
-      ),
-    },
-  ];
-
   const paginationModel = { page: 0, pageSize: 10 };
+  const {
+    data: categories = [],
+    isLoading,
+    isError,
+    refetch
+  } = useQuery("category", fetchCategory);
+
+  console.log(categories);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching data</div>;
 
   return (
     <div>
-      <Modal name={'Add Category'} />
+      <Box sx={{ display: "flex", justifyContent: "end" }}>
+        <Modal refetch={refetch} name={"Add Category"} />
+      </Box>
       <Paper sx={{ height: "auto", width: "100%", marginTop: 10 }}>
         <DataGrid
-          rows={rows}
+          rows={categories}
           columns={columns}
           initialState={{ pagination: { paginationModel } }}
           pageSizeOptions={[10, 20]}
-          checkboxSelection
           sx={{ border: 0 }}
           processRowUpdate={handleProcessRowUpdate}
         />
