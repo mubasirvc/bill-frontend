@@ -4,6 +4,7 @@ import Items from "./pages/Items";
 import Home from "./pages/Home";
 import Category from "./pages/Category";
 import Navbar from "./components/Navbar";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} /> 
           <Route path="/items" element={<Items />} /> 
           <Route path="/category" element={<Category />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Box>
     </Router>
