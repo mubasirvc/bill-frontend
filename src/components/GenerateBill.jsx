@@ -86,7 +86,7 @@ const GenerateBill = ({ details, datas }) => {
     doc.autoTable({
       startY: 80,
       head: [["No", "Name", "Qty", "Notes"]],
-      body: datas.map((item) => [item.no, item.name, item.qty, item.notes]),
+      body: datas.map((item, i) => [i+1, item.name, item.qty, item.notes]),
     });
 
     const pdfBlob = doc.output("blob");
