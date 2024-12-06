@@ -1,8 +1,25 @@
-# React + Vite
+# EasyBill Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The frontend for EasyBill, a billing application designed for seamless invoice creation and management.
 
-Currently, two official plugins are available:
+## **Features**
+- User-friendly interface for creating and editing invoices.
+- Category management and PDF generation.
+- Built with **React.js** for a responsive and dynamic experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## **Setup Instructions**
+
+1. **Clone the repository:**
+   ```bash
+   git clone <frontend-repo-link>
+   cd bill-frontend
+2. Install dependencies:  
+   ```bash
+   npm install
+
+3. Start the development server:  
+   ```bash
+   npm run dev
+
+4. Open your browser and navigate to http://localhost:3000:  
+
