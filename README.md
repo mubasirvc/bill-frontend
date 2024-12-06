@@ -11,7 +11,7 @@ The frontend for EasyBill, a billing application designed for seamless invoice c
 
 1. **Clone the repository:**
    ```bash
-   git clone <frontend-repo-link>
+   git clone git@github.com:mubasirvc/bill-frontend.git
    cd bill-frontend
 2. Install dependencies:  
    ```bash
